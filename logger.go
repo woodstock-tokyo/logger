@@ -12,7 +12,7 @@ import (
 var app string
 
 // Fields type, used to pass to `WithFields`.
-type Fields map[string]interface{}
+type Fields map[string]any
 
 func init() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
@@ -78,107 +78,107 @@ func (e *Exporter) Type(typeName string) *Exporter {
 }
 
 // Print print
-func (e *Exporter) Print(args ...interface{}) {
+func (e *Exporter) Print(args ...any) {
 	e.decorateRuntime().le.Print(args...)
 }
 
 // Printf printf
-func (e *Exporter) Printf(format string, args ...interface{}) {
+func (e *Exporter) Printf(format string, args ...any) {
 	e.decorateRuntime().le.Printf(format, args...)
 }
 
 // Println println
-func (e *Exporter) Println(args ...interface{}) {
+func (e *Exporter) Println(args ...any) {
 	e.decorateRuntime().le.Println(args...)
 }
 
 // Debug debug
-func (e *Exporter) Debug(args ...interface{}) {
+func (e *Exporter) Debug(args ...any) {
 	e.decorateRuntime().le.Debug(args...)
 }
 
 // Debugf debugf
-func (e *Exporter) Debugf(format string, args ...interface{}) {
+func (e *Exporter) Debugf(format string, args ...any) {
 	e.decorateRuntime().le.Debugf(format, args...)
 }
 
 // Debugln debugln
-func (e *Exporter) Debugln(args ...interface{}) {
+func (e *Exporter) Debugln(args ...any) {
 	e.decorateRuntime().le.Debugln(args...)
 }
 
 // Info info
-func (e *Exporter) Info(args ...interface{}) {
+func (e *Exporter) Info(args ...any) {
 	e.decorateRuntime().le.Info(args...)
 }
 
 // Infof infof
-func (e *Exporter) Infof(format string, args ...interface{}) {
+func (e *Exporter) Infof(format string, args ...any) {
 	e.decorateRuntime().le.Infof(format, args...)
 }
 
 // Infoln infoln
-func (e *Exporter) Infoln(args ...interface{}) {
+func (e *Exporter) Infoln(args ...any) {
 	e.decorateRuntime().le.Infoln(args...)
 }
 
 // Warn warn
-func (e *Exporter) Warn(args ...interface{}) {
+func (e *Exporter) Warn(args ...any) {
 	e.decorateRuntime().le.Warn(args...)
 }
 
 // Warnf warnf
-func (e *Exporter) Warnf(format string, args ...interface{}) {
+func (e *Exporter) Warnf(format string, args ...any) {
 	e.decorateRuntime().le.Warnf(format, args...)
 }
 
 // Warnln warnln
-func (e *Exporter) Warnln(args ...interface{}) {
+func (e *Exporter) Warnln(args ...any) {
 	e.decorateRuntime().le.Warnln(args...)
 }
 
 // Error error
-func (e *Exporter) Error(args ...interface{}) {
+func (e *Exporter) Error(args ...any) {
 	e.decorateRuntime().le.Error(args...)
 }
 
 // Errorf errorf
-func (e *Exporter) Errorf(format string, args ...interface{}) {
+func (e *Exporter) Errorf(format string, args ...any) {
 	e.decorateRuntime().le.Errorf(format, args...)
 }
 
 // Errorln errorln
-func (e *Exporter) Errorln(args ...interface{}) {
+func (e *Exporter) Errorln(args ...any) {
 	e.decorateRuntime().le.Errorln(args...)
 }
 
 // Fatal fatal
-func (e *Exporter) Fatal(args ...interface{}) {
+func (e *Exporter) Fatal(args ...any) {
 	e.decorateRuntime().le.Fatal(args...)
 }
 
 // Fatalf fatalf
-func (e *Exporter) Fatalf(format string, args ...interface{}) {
+func (e *Exporter) Fatalf(format string, args ...any) {
 	e.decorateRuntime().le.Fatalf(format, args...)
 }
 
 // Fatalln fatalln
-func (e *Exporter) Fatalln(args ...interface{}) {
+func (e *Exporter) Fatalln(args ...any) {
 	e.decorateRuntime().le.Fatalln(args...)
 }
 
 // Panic panic
-func (e *Exporter) Panic(args ...interface{}) {
+func (e *Exporter) Panic(args ...any) {
 	e.decorateRuntime().le.Panic(args...)
 }
 
 // Panicf panicf
-func (e *Exporter) Panicf(format string, args ...interface{}) {
+func (e *Exporter) Panicf(format string, args ...any) {
 	e.decorateRuntime().le.Panicf(format, args...)
 }
 
 // Panicln panicln
-func (e *Exporter) Panicln(args ...interface{}) {
+func (e *Exporter) Panicln(args ...any) {
 	e.decorateRuntime().le.Panicln(args...)
 }
 
@@ -226,107 +226,107 @@ func defaultExporter() *Exporter {
 }
 
 // Print print
-func Print(args ...interface{}) {
+func Print(args ...any) {
 	defaultExporter().Print(args...)
 }
 
 // Printf printf
-func Printf(format string, args ...interface{}) {
+func Printf(format string, args ...any) {
 	defaultExporter().Printf(format, args...)
 }
 
 // Println println
-func Println(args ...interface{}) {
+func Println(args ...any) {
 	defaultExporter().Println(args...)
 }
 
 // Debug debug
-func Debug(args ...interface{}) {
+func Debug(args ...any) {
 	defaultExporter().Debug(args...)
 }
 
 // Debugf debugf
-func Debugf(format string, args ...interface{}) {
+func Debugf(format string, args ...any) {
 	defaultExporter().Debugf(format, args...)
 }
 
 // Derbugln debugln
-func Debugln(args ...interface{}) {
+func Debugln(args ...any) {
 	defaultExporter().Debugln(args...)
 }
 
 // Info info
-func Info(args ...interface{}) {
+func Info(args ...any) {
 	defaultExporter().Info(args...)
 }
 
 // Infof infof
-func Infof(format string, args ...interface{}) {
+func Infof(format string, args ...any) {
 	defaultExporter().Infof(format, args...)
 }
 
 // Infoln infoln
-func Infoln(args ...interface{}) {
+func Infoln(args ...any) {
 	defaultExporter().Infoln(args...)
 }
 
 // Warn warn
-func Warn(args ...interface{}) {
+func Warn(args ...any) {
 	defaultExporter().Warn(args...)
 }
 
 // Warnf warnf
-func Warnf(format string, args ...interface{}) {
+func Warnf(format string, args ...any) {
 	defaultExporter().Warnf(format, args...)
 }
 
 // Warnln warnln
-func Warnln(args ...interface{}) {
+func Warnln(args ...any) {
 	defaultExporter().Warnln(args...)
 }
 
 // Error error
-func Error(args ...interface{}) {
+func Error(args ...any) {
 	defaultExporter().Error(args...)
 }
 
 // Errorf errorf
-func Errorf(format string, args ...interface{}) {
+func Errorf(format string, args ...any) {
 	defaultExporter().Errorf(format, args...)
 }
 
 // Errorln errorln
-func Errorln(args ...interface{}) {
+func Errorln(args ...any) {
 	defaultExporter().Errorln(args...)
 }
 
 // Fatal fatal
-func Fatal(args ...interface{}) {
+func Fatal(args ...any) {
 	defaultExporter().Fatal(args...)
 }
 
 // Fatalf fatalf
-func Fatalf(format string, args ...interface{}) {
+func Fatalf(format string, args ...any) {
 	defaultExporter().Fatalf(format, args...)
 }
 
 // Fatalln Fatalln
-func Fatalln(args ...interface{}) {
+func Fatalln(args ...any) {
 	defaultExporter().Fatalln(args...)
 }
 
 // Panic panic
-func Panic(args ...interface{}) {
+func Panic(args ...any) {
 	defaultExporter().Panic(args...)
 }
 
 // Panicf panicf
-func Panicf(format string, args ...interface{}) {
+func Panicf(format string, args ...any) {
 	defaultExporter().Panicf(format, args...)
 }
 
 // Panicln panicln
-func Panicln(args ...interface{}) {
+func Panicln(args ...any) {
 	defaultExporter().Panicln(args...)
 }
 
