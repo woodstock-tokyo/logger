@@ -184,10 +184,16 @@ func (e *Exporter) Panicln(args ...any) {
 
 // Type init logger entry with logger type
 func Type(typeName string) *Exporter {
+	// route to pagerduty
+	if typeName == "pagerduty" {
+		logrus.AddHook(NewPagerDutyHook(os.Getenv("PAGERDUTY_API_KEY")))
+	}
+
 	formatedFields := Fields{
 		"app":  app,
 		"type": typeName,
 	}
+
 	return &Exporter{
 		le: logrus.WithFields(logrus.Fields(formatedFields)),
 	}
