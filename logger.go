@@ -189,6 +189,21 @@ func Type(typeName string) *Exporter {
 		logrus.AddHook(NewPagerDutyHook(os.Getenv("PAGERDUTY_API_KEY")))
 	}
 
+	// route to cloudwatch
+	if typeName == "cloudwatch" {
+		region := os.Getenv("AWS_REGION")
+		if region == "" {
+			region = "ap-northeast-1"
+		}
+
+		logrus.AddHook(NewCloudWatchHook(region,
+			os.Getenv("WS_CLOUDWATCH_AWS_ACCESS_KEY_ID"),
+			os.Getenv("WS_CLOUDWATCH_AWS_SECRET_ACCESS_KEY"),
+			os.Getenv("WS_CLOUDWATCH_LOG_GROUP"),
+			os.Getenv("WS_CLOUDWATCH_STREAM_NAME")),
+		)
+	}
+
 	formatedFields := Fields{
 		"app":  app,
 		"type": typeName,
