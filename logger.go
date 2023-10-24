@@ -61,6 +61,11 @@ func (e *Exporter) WithFields(fields Fields) *Exporter {
 	return e
 }
 
+// WithError with fields
+func (e *Exporter) WithError(err error) *Exporter {
+	return e.WithFields(Fields{"err": err.Error()})
+}
+
 // WithSecretFields with secret fields
 func (e *Exporter) WithSecretFields(fields Fields) *Exporter {
 	copyfields := e.le.Data
