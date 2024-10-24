@@ -189,9 +189,13 @@ func (e *Exporter) Panicln(args ...any) {
 
 // Type init logger entry with logger type
 func Type(typeName string) *Exporter {
+	loggerInstance := logrus.New()
+	loggerInstance.SetFormatter(&logrus.JSONFormatter{})
+	loggerInstance.SetOutput(os.Stdout)
+
 	// route to pagerduty
 	if typeName == "pagerduty" {
-		logrus.AddHook(NewPagerDutyHook(os.Getenv("PAGERDUTY_API_KEY")))
+		loggerInstance.AddHook(NewPagerDutyHook(os.Getenv("PAGERDUTY_API_KEY")))
 	}
 
 	// route to cloudwatch
@@ -200,8 +204,7 @@ func Type(typeName string) *Exporter {
 		if region == "" {
 			region = "ap-northeast-1"
 		}
-
-		logrus.AddHook(NewCloudWatchHook(region,
+		loggerInstance.AddHook(NewCloudWatchHook(region,
 			os.Getenv("WS_CLOUDWATCH_AWS_ACCESS_KEY_ID"),
 			os.Getenv("WS_CLOUDWATCH_AWS_SECRET_ACCESS_KEY"),
 			os.Getenv("WS_CLOUDWATCH_LOG_GROUP"),
@@ -215,7 +218,7 @@ func Type(typeName string) *Exporter {
 	}
 
 	return &Exporter{
-		le: logrus.WithFields(logrus.Fields(formatedFields)),
+		le: loggerInstance.WithFields(logrus.Fields(formatedFields)),
 	}
 }
 

@@ -196,7 +196,6 @@ func (h *Hook) Write(p []byte) (n int, err error) {
 	}
 
 	h.nextSequenceToken = resp.NextSequenceToken
-
 	return len(p), nil
 }
 
