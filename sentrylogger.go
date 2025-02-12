@@ -8,7 +8,6 @@ import (
 
 	"github.com/getsentry/sentry-go"
 	"github.com/woodstock-tokyo/go-aws-sdk/secretsmanager"
-	"github.com/woodstock-tokyo/woodstock-jobs/util"
 )
 
 var (
@@ -18,7 +17,7 @@ var (
 
 func getSentryDSN() string {
 	once.Do(func() {
-		env := util.GetEnv()
+		env := os.Getenv("WS_JOBS_ENVIRONMENT")
 		secretID := fmt.Sprintf("woodstock-jobs-%s", env)
 
 		svc := secretsmanager.NewService(
