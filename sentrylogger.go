@@ -12,12 +12,14 @@ import (
 
 var (
 	sentryDSN string
+	env       string
 	once      sync.Once
 )
 
-func getSentryDSN(env string) string {
+func getSentryDSN(_env string) string {
 	once.Do(func() {
-		secretID := fmt.Sprintf("woodstock-jobs-%s", env) 
+		secretID := fmt.Sprintf("woodstock-jobs-%s", env)
+		env = _env
 
 		svc := secretsmanager.NewService(
 			os.Getenv("WS_SECRETS_MANAGER_AWS_ACCESS_KEY_ID"),
@@ -46,8 +48,8 @@ func getSentryDSN(env string) string {
 	return sentryDSN
 }
 
-func InitSentry(env string) error {
-	dsn := getSentryDSN(env)
+func InitSentry(_env string) error {
+	dsn := getSentryDSN(_env)
 	if dsn == "" {
 		return fmt.Errorf("empty Sentry DSN")
 	}
@@ -62,7 +64,7 @@ func InitSentry(env string) error {
 // LogToSentry sends message to Sentry with environment info
 func LogToSentry(message string, level sentry.Level) {
 	// add environment info to message
-	env := os.Getenv("WS_JOBS_ENVIRONMENT")
+	//env := os.Getenv("WS_JOBS_ENVIRONMENT")
 	fullMessage := fmt.Sprintf("[%s](%s) %s", level, env, message)
 
 	sentry.CaptureMessage(fullMessage)
