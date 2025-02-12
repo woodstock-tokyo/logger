@@ -19,7 +19,7 @@ func getSentryDSN() string {
 	once.Do(func() {
 		//env := os.Getenv("WS_JOBS_ENVIRONMENT") // Not working
 		env := "local"
-		secretID := fmt.Sprintf("woodstock-jobs-stg", env) // TODO : working correctly
+		secretID := fmt.Sprintf("woodstock-jobs-%s", env) // TODO : working correctly
 
 		svc := secretsmanager.NewService(
 			os.Getenv("WS_SECRETS_MANAGER_AWS_ACCESS_KEY_ID"),
