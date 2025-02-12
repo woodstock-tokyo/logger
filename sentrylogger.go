@@ -15,11 +15,9 @@ var (
 	once      sync.Once
 )
 
-func getSentryDSN() string {
+func getSentryDSN(env string) string {
 	once.Do(func() {
-		//env := os.Getenv("WS_JOBS_ENVIRONMENT") // Not working
-		env := "local"
-		secretID := fmt.Sprintf("woodstock-jobs-%s", env) // TODO : working correctly
+		secretID := fmt.Sprintf("woodstock-jobs-%s", env) 
 
 		svc := secretsmanager.NewService(
 			os.Getenv("WS_SECRETS_MANAGER_AWS_ACCESS_KEY_ID"),
@@ -48,8 +46,8 @@ func getSentryDSN() string {
 	return sentryDSN
 }
 
-func InitSentry() error {
-	dsn := getSentryDSN()
+func InitSentry(env string) error {
+	dsn := getSentryDSN(env)
 	if dsn == "" {
 		return fmt.Errorf("empty Sentry DSN")
 	}
