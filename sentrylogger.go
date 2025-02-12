@@ -56,15 +56,15 @@ func InitSentry() error {
 
 	return sentry.Init(sentry.ClientOptions{
 		Dsn:         dsn,
-		Environment: util.GetEnv(),
-		Debug:       util.GetEnv() == "development",
+		Environment: os.Getenv("WS_JOBS_ENVIRONMENT"),
+		Debug:       os.Getenv("WS_JOBS_ENVIRONMENT") == "development",
 	})
 }
 
 // LogToSentry sends message to Sentry with environment info
 func LogToSentry(message string, level sentry.Level) {
 	// add environment info to message
-	env := util.GetEnv()
+	env := os.Getenv("WS_JOBS_ENVIRONMENT")
 	fullMessage := fmt.Sprintf("[%s](%s) %s", level, env, message)
 
 	sentry.CaptureMessage(fullMessage)
