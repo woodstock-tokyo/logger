@@ -1,4 +1,4 @@
-package logger 
+package logger
 
 import (
 	"fmt"
@@ -8,7 +8,6 @@ import (
 
 	"github.com/getsentry/sentry-go"
 	"github.com/woodstock-tokyo/go-aws-sdk/secretsmanager"
-	"github.com/woodstock-tokyo/logger"
 	"github.com/woodstock-tokyo/woodstock-jobs/util"
 )
 
@@ -30,7 +29,7 @@ func getSentryDSN() string {
 
 		resp := svc.GetSecretValue(secretID)
 		if resp.Error != nil {
-			logger.WithFields(logger.Fields{
+			WithFields(Fields{
 				"error": resp.Error,
 				"env":   env,
 			}).Error("Failed to get Sentry DSN from Secrets Manager")
@@ -39,7 +38,7 @@ func getSentryDSN() string {
 
 		dsn, ok := resp.SecretValue["WS_SENTRY_DSN"]
 		if !ok || dsn == "" {
-			logger.Error("SENTRY_DSN not found in secret")
+			Error("SENTRY_DSN not found in secret")
 			return
 		}
 
