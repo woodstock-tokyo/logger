@@ -1,4 +1,4 @@
-package sentrylogger
+package logger 
 
 import (
 	"fmt"
