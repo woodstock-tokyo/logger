@@ -18,8 +18,8 @@ var (
 
 func getSentryDSN(_env string) string {
 	once.Do(func() {
-		secretID := fmt.Sprintf("woodstock-jobs-%s", env)
 		env = _env
+		secretID := fmt.Sprintf("woodstock-jobs-%s", env)
 
 		svc := secretsmanager.NewService(
 			os.Getenv("WS_SECRETS_MANAGER_AWS_ACCESS_KEY_ID"),
