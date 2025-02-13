@@ -48,6 +48,19 @@ Panic, Panicf, Panicln
 
 ```
 
+
+## Sentry Message
+To use sentry logger, please initialize as the below, you need to pass the environemnt(local/develop/stg/prod)
+
+```go
+   env := util.GetEnv()
+	logger.InitSentry(env)
+```
+
+Now you can send the log to sentry.
+```go
+	logger.LogToSentry(fmt.Sprintf("Successfully updated portfolio chart for user %d", userID), "INFO")
+```
 ## TODO
 
 - Logger factory for different logrus hooks (ElasticSearch, for example)
