@@ -73,6 +73,11 @@ func LogToSentry(message string, level sentry.Level) {
 	sentry.Flush(2 * time.Second)
 }
 
+func CaptureMessage(message string, level sentry.Level) {
+	sentry.CaptureMessage(message)
+	sentry.Flush(2 * time.Second)
+}
+
 // LogError sends error to Sentry
 func LogError(err error) {
 	sentry.CaptureException(err)
